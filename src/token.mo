@@ -1,6 +1,7 @@
 import HashMap "mo:base/HashMap";
 import Principal "mo:base/Principal";
 
+<<<<<<< HEAD
 actor Token {
     private stable var initialized : Bool = false;
 
@@ -8,10 +9,19 @@ actor Token {
     private stable var decimals_ : Nat = 0;
     private stable var symbol_ : Text = "";
     private stable var totalSupply_ : Nat = 0;
+=======
+shared(msg) actor class Token(_name: Text, _symbol: Text, _decimals: Nat, _totalSupply: Nat, _owner: Principal) {
+	private stable var owner_ : Principal = _owner;
+    private stable var name_ : Text = _name;
+    private stable var decimals_ : Nat = _decimals;
+    private stable var symbol_ : Text = _symbol;
+    private stable var totalSupply_ : Nat = _totalSupply;
+>>>>>>> 82917ae (refactor)
 
     private var balances =  HashMap.HashMap<Principal, Nat>(1, Principal.equal, Principal.hash);
     private var allowances = HashMap.HashMap<Principal, HashMap.HashMap<Principal, Nat>>(1, Principal.equal, Principal.hash);
 
+<<<<<<< HEAD
     public shared(msg) func initialize(_name: Text, _symbol: Text, _decimals: Nat, _totalSupply: Nat) : async Bool {
         assert(initialized == false);
         name_ := _name;
@@ -22,6 +32,9 @@ actor Token {
         initialized := true;
         return true;
     };
+=======
+	balances.put(owner_, totalSupply_);
+>>>>>>> 82917ae (refactor)
 
     public shared(msg) func transfer(to: Principal, value: Nat) : async Bool {
         assert(initialized);
