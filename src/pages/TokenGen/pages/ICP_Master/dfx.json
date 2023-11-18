@@ -4,7 +4,7 @@
       "main": "src/token.mo"
     },
     "": {
-      "main": "src/token.mo"
+      "main": "src/tokenfac.mo"
     },
     "logo11": {
       "main": "src/token.mo"
