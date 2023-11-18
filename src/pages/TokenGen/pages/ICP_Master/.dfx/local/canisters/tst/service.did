@@ -1,0 +1,59 @@
+type Metadata = record {
+  fee : nat;
+  decimals : nat8;
+  owner : principal;
+  logo : text;
+  name : text;
+  totalSupply : nat;
+  symbol : text;
+};
+type Time = int;
+type Token = service {
+  allowance : (principal, principal) -> (nat) query;
+  approve : (principal, nat) -> (TxReceipt);
+  balanceOf : (principal) -> (nat) query;
+  burn : (nat) -> (TxReceipt);
+  decimals : () -> (nat8) query;
+  getAllowanceSize : () -> (nat) query;
+  getHolders : (nat, nat) -> (vec record { principal; nat }) query;
+  getMetadata : () -> (Metadata) query;
+  getTokenFee : () -> (nat) query;
+  getTokenInfo : () -> (TokenInfo) query;
+  getUserApprovals : (principal) -> (vec record { principal; nat }) query;
+  historySize : () -> (nat) query;
+  logo : () -> (text) query;
+  mint : (principal, nat) -> (TxReceipt);
+  name : () -> (text) query;
+  setFee : (nat) -> () oneway;
+  setFeeTo : (principal) -> () oneway;
+  setLogo : (text) -> () oneway;
+  setName : (text) -> () oneway;
+  setOwner : (principal) -> () oneway;
+  symbol : () -> (text) query;
+  totalSupply : () -> (nat) query;
+  transfer : (principal, nat) -> (TxReceipt);
+  transferFrom : (principal, principal, nat) -> (TxReceipt);
+};
+type TokenInfo = record {
+  holderNumber : nat;
+  deployTime : Time;
+  metadata : Metadata;
+  historySize : nat;
+  cycles : nat;
+  feeTo : principal;
+};
+type TxReceipt = variant {
+  Ok : nat;
+  Err : variant {
+    InsufficientAllowance;
+    InsufficientBalance;
+    ErrorOperationStyle;
+    Unauthorized;
+    LedgerTrap;
+    ErrorTo;
+    Other : text;
+    BlockUsed;
+    AmountTooSmall;
+  };
+};
+service : Token

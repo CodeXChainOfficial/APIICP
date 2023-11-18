@@ -1,0 +1,36 @@
+{
+  "tokens": [
+    {
+      "logo": "tst",
+      "name": "333",
+      "symbol": "33",
+      "decimals": "33",
+      "totalSupply": "3",
+      "fee": "3"
+    },
+    {
+      "logo": "tst",
+      "name": "tst",
+      "symbol": "tst",
+      "decimals": "22",
+      "totalSupply": "22",
+      "fee": "2"
+    },
+    {
+      "logo": "tst",
+      "name": "tst",
+      "symbol": "tst",
+      "decimals": "22",
+      "totalSupply": "22",
+      "fee": "2"
+    },
+    {
+      "logo": "tfff",
+      "name": "fff",
+      "symbol": "ffftst",
+      "decimals": "22",
+      "totalSupply": "22",
+      "fee": "2"
+    }
+  ]
+}
