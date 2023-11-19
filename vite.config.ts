@@ -37,8 +37,6 @@ export default defineConfig(({ mode }) => {
     rollupOptions: {
       external: ['__vite-browser-external', 'events'], // Add 'events' to the list
     },
-    optimizeDeps: {
-      exclude: ['@dfinity/identity', '@dfinity/candid', '@dfinity/principal'],
-    },
+
   };
 });

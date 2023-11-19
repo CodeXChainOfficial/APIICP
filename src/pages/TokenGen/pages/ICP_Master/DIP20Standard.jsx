@@ -6,7 +6,6 @@ import { FormInputStyle } from "./styles/form";
 import axios from "axios"; // Import Axios for making HTTP requests
 import { ThemeProvider, createTheme } from '@mui/material/styles';
 import CssBaseline from '@mui/material/CssBaseline';
-import { HttpAgent, Actor, ActorConfig, IdentityInvalidError } from '@dfinity/agent';
 import { canisterId } from "./declarations";
 //import {  idlFactory } from './src/motoko/DIP20/motoko/src/declarations/token/index';
 // Use the initialized canisterId variable wherever it is required

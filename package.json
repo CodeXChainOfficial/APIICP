@@ -12,13 +12,12 @@
     "preview": "vite preview"
   },
   "dependencies": {
-    "@dfinity/agent": "^0.19.3",
-    "@dfinity/auth-client": "^0.19.3",
+    "@dfinity/agent": "^0.20.1",
     "@dfinity/candid": "^0.20.1",
+    "@dfinity/principal": "^0.20.1",
     "@emotion/react": "^11.11.1",
     "@emotion/styled": "^11.11.0",
     "@hookform/resolvers": "^3.3.1",
-    "@internet-identity-labs/react-ic-ii-auth": "^0.0.19",
     "@mui/material": "^5.14.11",
     "@types/react-modal": "^3.16.3",
     "axios": "^1.5.1",
