@@ -118,6 +118,19 @@ const executeBash = async (image_url, decimals, totalSupply, name, symbol, ident
 };
 
 
+
+const executeBash721 = async (image_url, decimals, totalSupply, name, symbol, identity) => {
+  const scriptPath = './src/motoko/DIP721-nft-container/bash.sh';
+  try {
+    const scriptOutput = await executeScript(scriptPath, [image_url, decimals, totalSupply, name, symbol, identity]);
+
+    console.log('Bash script execution DeployToken:', scriptOutput);
+  } catch (error) {
+    console.error('Error executing script:', error);
+    throw error; // Rethrow the error to handle it in the calling function
+  }
+};
+
 const executeBashID = async (nameID) => {
   const scriptPath = './identity.sh';
   try {
@@ -135,12 +148,38 @@ const executeBashID = async (nameID) => {
 // Import necessary modules
 
 // ... (previous code)
+app.post('/api/checkcanister721', async (req, res) => {
+  const canisterId = fs.readFileSync('./src/motoko/DIP721-nft-container/canister-id-dip721', 'utf8').trim();
+  res.json({ success: true, message: 'Token deployed successfully.', canisterId });
+
+});
+
 app.post('/api/checkcanister', async (req, res) => {
   const canisterId = fs.readFileSync('./src/motoko/DIP20/motoko/canister-id-dip20', 'utf8').trim();
   res.json({ success: true, message: 'Token deployed successfully.', canisterId });
 
 });
 
+
+app.post('/api/DIP721', async (req, res) => {
+  const { image_url, identity, name, symbol, decimals, totalSupply } = req.body;
+
+  try {
+    // Execute the script with the provided data
+    // You might need to modify this based on your script
+    await executeBash721(image_url, decimals, totalSupply, name, symbol, identity);
+
+
+
+    // Read Canister ID from the file
+    const canisterId = fs.readFileSync('./src/motoko/DIP721-nft-container/canister-id-dip721', 'utf8').trim();
+
+    res.json({ success: true, message: 'NFT deployed successfully.', canisterId });
+  } catch (error) {
+    console.error('Error deploying token:', error);
+    res.status(500).json({ success: false, message: 'Error deploying NFT.' });
+  }
+});
 
 app.post('/api/DIP20', async (req, res) => {
   const { image_url, identity, name, symbol, decimals, totalSupply } = req.body;

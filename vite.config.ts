@@ -22,6 +22,8 @@ export default defineConfig(({ mode }) => {
         '@': path.resolve(__dirname, 'app/javascript/App/'),
         timers: 'rollup-plugin-node-polyfills/polyfills/timers',
       },
+      mainFields: ['browser', 'module', 'main'],
+
     },
     server: {
       port: 3000,
