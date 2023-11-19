@@ -179,11 +179,11 @@ export default function DIP20Standard() {
   const [description, setDescription] = useState("");
   const [CollectionName, setCollectionNamel] = useState("");
   const [CollectionLimit, setCollectionLimit] = useState("");
-  const [result1, setResult1] = useState<string>("");
-  const [canisterIds, setCanisterIds] = useState<string>([]);
+  const [result1, setResult1] = useState("");
+  const [canisterIds, setCanisterIds] = useState([]);
   
   
-  const [selectedId, setSelectedId] = useState<string | null>(null);
+  const [selectedId, setSelectedId] = useState(null);
   const [modalIsOpen, setModalIsOpen] = useState(false);
   const [selectedData, setSelectedData] = useState({
     name: '',
