@@ -181,7 +181,7 @@ export default function DIP20Standard() {
   const [CollectionName, setCollectionNamel] = useState("");
   const [CollectionLimit, setCollectionLimit] = useState("");
   const [result1, setResult1] = useState<string>("");
-  const [canisterIds, setCanisterIds] = useState<string[]>([]);
+  const [canisterIds, setCanisterIds] = useState<string>([]);
   
   
   const [selectedId, setSelectedId] = useState<string | null>(null);
@@ -317,7 +317,7 @@ const deploycansiter = async () => {
 
 
 }
-  const fetchDataForCanister = async (id: string) => {
+  const fetchDataForCanister = async (id) => {
     if (id === ""){id = "wphza-r4aaa-aaaaa-qaeaa-cai"}
     const endpointUrl = 'http://127.0.0.1:4943/?canisterId=wmqac-jeaaa-aaaaa-qad5a-cai&id=';
   //  const agent = new HttpAgent({ host: endpointUrl });
@@ -331,7 +331,7 @@ const deploycansiter = async () => {
     //  const name = await myActor.nameDip721();
    //   const logo = await myActor.logoDip721();
   
-      return { id, title: name as string, imageSrc: image_url as string };
+      return { id, title: name , imageSrc: image_url  };
     } catch (error) {
       console.error('Error calling canister:', error);
       return null;
@@ -341,7 +341,7 @@ const deploycansiter = async () => {
   // Function to fetch data for all canister IDs
   const fetchAllData = async () => {
     const cardsData = await Promise.all(canisterIds.map((id) => fetchDataForCanister(id)));
-    const validCardsData = cardsData.filter((data) => data !== null) as { id: string; title: string; imageSrc: string }[];
+    const validCardsData = cardsData.filter((data) => data !== null)
   
     // Now validCardsData contains the data for all canister IDs
     // Use it to set the state or do whatever you need
@@ -354,18 +354,18 @@ const deploycansiter = async () => {
   }, []); // Empty dependency array means it will run once when the component mounts
   
   
-  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>, setState: React.Dispatch<React.SetStateAction<string>>) => {
+  const handleInputChange = (e, setState) => {
     setState(e.target.value);
+  }
   
-  };
   
-  const handleReusltChange = (newResult: string) => {
+  const handleReusltChange = (newResult) => {
       setResult1(newResult);
       console.log("result change", newResult);
   
       if (!canisterIds.includes(newResult)) {
         // Append the new canisterId to the list
-        setCanisterIds((prevIds: string[]) => [...prevIds, newResult]);
+        setCanisterIds((prevIds) => [...prevIds, newResult]);
       }
     };
   
